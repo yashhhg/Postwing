@@ -1,0 +1,66 @@
+/* Base + animation styles ported verbatim from Postwing.dc.html */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* Base page surface (was the outer wrapper <div> in the design) */
+body {
+  background: #F6F5F1;
+  color: #14130F;
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.pw-reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1); }
+.pw-reveal.pw-in { opacity: 1; transform: none; }
+.pw-reveal.pw-in > * { animation: pw-rise .7s cubic-bezier(.16,.84,.44,1) both; }
+.pw-reveal.pw-in > *:nth-child(2) { animation-delay: .08s; }
+.pw-reveal.pw-in > *:nth-child(3) { animation-delay: .16s; }
+@keyframes pw-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pw-reveal, .pw-reveal.pw-in > * { opacity: 1 !important; transform: none !important; animation: none !important; }
+}
+::selection { background: #C6F135; color: #14130F; }
+@keyframes pw-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes pw-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .pw-faq-plus { transform: rotate(45deg); }
+a { text-decoration: none; }
+input:focus, button:focus-visible { outline: none; }
+input::placeholder { color: #A8A499; }
+
+/* Focus ring for auth inputs (replaces the design's style-focus hint attribute) */
+.pw-auth input:focus {
+  border-color: #5B3BEE;
+  box-shadow: 0 0 0 3px rgba(91,59,238,.14);
+}
+
+/* Inline error message injected by the auth client (only shows on failure) */
+.pw-error {
+  background: #FEECEC;
+  border: 1px solid #F5C2C2;
+  color: #B42318;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 11px 14px;
+  border-radius: 12px;
+}
+
+@media (max-width: 900px) {
+  .pw-navlinks { display: none !important; }
+  .pw-hero { grid-template-columns: 1fr !important; gap: 40px !important; padding-top: 48px !important; }
+  .pw-feature-grid { grid-template-columns: 1fr 1fr !important; }
+  .pw-auth { grid-template-columns: 1fr !important; }
+  .pw-auth-brand { display: none !important; }
+}
+@media (max-width: 620px) {
+  .pw-feature-grid { grid-template-columns: 1fr !important; }
+  .pw-soon-grid { grid-template-columns: 1fr !important; }
+  .pw-floatcard { left: 0 !important; }
+}

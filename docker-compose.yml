@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postwing-db
+    environment:
+      POSTGRES_USER: postwing
+      POSTGRES_PASSWORD: postwing
+      POSTGRES_DB: postwing
+    ports:
+      - "5432:5432"
+    volumes:
+      - postwing_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postwing"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postwing_pgdata:

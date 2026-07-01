@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+backend/.env
+
+# Node / Next.js
+node_modules/
+.next/
+frontend/.env.local
+frontend/next-env.d.ts
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Design source (regenerate screens with `npm run gen:design`)
+_design_src/
