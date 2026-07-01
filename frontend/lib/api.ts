@@ -28,6 +28,19 @@ async function post(path: string, body: AuthBody) {
   return data;
 }
 
+export async function me(): Promise<any | null> {
+  try {
+    const res = await fetch(`${API_URL}/api/auth/me`, {
+      credentials: "include",
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
 export function login(email: string, password: string) {
   return post("/api/auth/login", { email, password });
 }

@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
-import PwInteractions from "@/components/PwInteractions";
-import { getCurrentUser } from "@/lib/serverAuth";
-import { soonHtml } from "@/lib/screens/soon";
+import ComingSoonClient from "@/components/ComingSoonClient";
 
 export const metadata: Metadata = {
   title: "You're on the list",
@@ -10,15 +7,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function ComingSoonPage() {
-  // Route guard: only authenticated users can see the coming-soon screen.
-  const user = await getCurrentUser();
-  if (!user) redirect("/login");
-
-  return (
-    <>
-      <div dangerouslySetInnerHTML={{ __html: soonHtml }} />
-      <PwInteractions />
-    </>
-  );
+export default function ComingSoonPage() {
+  // Auth is verified in the browser (see ComingSoonClient) because the session
+  // cookie is set on the backend domain, which the Next.js server can't read.
+  return <ComingSoonClient />;
 }
