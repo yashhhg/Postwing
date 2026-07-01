@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://postwing-production.up.railway.app";
+// Kept under 160 characters for the meta description.
 const DESCRIPTION =
-  "Postwing lets creators, small businesses and founders schedule and cross-post content to Instagram, TikTok, YouTube, X, LinkedIn and more — from one simple dashboard, without the enterprise price tag.";
+  "Schedule once, publish everywhere. Postwing is the affordable social scheduler for creators and small teams — plan and cross-post from one dashboard.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -5,7 +5,7 @@ import { landingHtml } from "@/lib/screens/landing";
 export const metadata: Metadata = {
   title: "Postwing — Schedule once. Publish everywhere.",
   description:
-    "The affordable way for creators and small teams to plan, schedule and cross-post to Instagram, TikTok, YouTube, X, LinkedIn, Facebook, Threads, Pinterest and Bluesky from one dashboard.",
+    "Plan, schedule and cross-post to Instagram, TikTok, YouTube, X, LinkedIn and more from one dashboard — the affordable social scheduler for creators.",
   alternates: { canonical: "/" },
 };
 
