@@ -44,6 +44,12 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
   },
   category: "technology",
+  verification: {
+    other: {
+      "ahrefs-site-verification":
+        "2dbe70a44809a05f3084b805440d36779a2549848d26d18ad2272ce2a9e60457",
+    },
+  },
 };
 
 // Site-wide structured data — helps SEO, AEO (answer engines) and GEO (generative engines).
