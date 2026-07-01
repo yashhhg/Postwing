@@ -77,6 +77,18 @@ login = common(login);
 register = common(register);
 soon = common(soon);
 
+// Landing SEO/a11y: make the primary CTAs real crawlable <a> links (so the page
+// has outgoing links) while keeping instant SPA navigation via data-pw-nav.
+// After pricing removal, every remaining <button> on the landing is a nav CTA.
+landing = landing.replace(/<button data-pw-nav="login"/g, '<a href="/login" data-pw-nav="login"');
+landing = landing.replace(/<button data-pw-nav="register"/g, '<a href="/register" data-pw-nav="register"');
+landing = landing.replace(/<\/button>/g, "</a>");
+// Ensure the links still render as the same boxes even though <a> is inline by default.
+landing = landing.replace(
+  /(<a href="\/(?:login|register)" data-pw-nav="(?:login|register)" style=")/g,
+  "$1display:inline-flex;align-items:center;"
+);
+
 const GOOGLE_BTN_OPEN =
   '<button style="display:flex;align-items:center;justify-content:center;gap:10px;background:#fff;border:1px solid #E7E4DB;padding:13px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;font-family:inherit;color:#14130F;">';
 const GOOGLE_BTN_TAGGED = GOOGLE_BTN_OPEN.replace("<button ", '<button type="button" data-pw-google="1" ');
