@@ -80,8 +80,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Font stylesheet only. Preconnect hints to the bare font domains were
+            removed because they resolve to 404 (no page at the domain root) and
+            Ahrefs flags them as broken links; the stylesheet URL below is 200. */}
         <link
           href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap"
           rel="stylesheet"
