@@ -1,0 +1,27 @@
+name: Keep Railway app warm
+
+# Railway's free/trial plan puts the service to sleep when idle. A sleeping app
+# cold-starts slowly, which makes Ahrefs (and Googlebot) time out on /robots.txt
+# and pages. This workflow pings the app on a schedule so it stays awake and
+# crawls succeed. NOTE: keeping it always-on uses more of your Railway credit —
+# for production, the Railway Hobby plan (always-on) is the cleaner fix.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *" # every 5 min (GitHub may run it a bit less often)
+  workflow_dispatch: {} # lets you trigger it manually from the Actions tab
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping frontend, robots.txt, sitemap, backend
+        run: |
+          for url in \
+            "https://postwing-production.up.railway.app/" \
+            "https://postwing-production.up.railway.app/robots.txt" \
+            "https://postwing-production.up.railway.app/sitemap.xml" \
+            "https://comfortable-quietude-production.up.railway.app/api/health"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 60 "$url" || echo "ERR")
+            echo "$code  $url"
+          done
